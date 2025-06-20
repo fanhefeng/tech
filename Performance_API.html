@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>监控卡顿</title>
+	</head>
+	<body>
+		<button id="btn">开启耗时任务</button>
+		<script>
+			/**
+			 * 使用 requestAnimation 来监控 fps 的帧率：❎
+			 * 不能完全监控到多方面的卡顿，如：
+			 * 1. 用户没有任何操作，页面后台在运行复杂的 js 任务导致卡顿，使用 requestAnimation 则监控不到。
+			 * 2. 如有些多媒体（如图片）比较大，加载慢，用户感知卡顿，也和 fps 无关。
+			 * 使用浏览器原生 API : PerformanceObserver
+			 *
+			 * https://developer.mozilla.org/en-US/docs/Web/API/Performance_API
+			 * https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
+			 * https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
+			 */
+			const btn = document.querySelector("#btn");
+
+			function delay(duration = 1000) {
+				const start = Date.now();
+				while (Date.now() - start < duration) {
+					console.log("lagging");
+				}
+			}
+
+			btn.addEventListener("click", () => {
+				delay(500);
+			});
+
+			const perfOb = new PerformanceObserver((list) => {
+				list.getEntries().forEach((entry) => {
+					console.log(entry);
+				});
+			});
+			perfOb.observe({
+				entryTypes: ["longtask"],
+			});
+		</script>
+	</body>
+</html>

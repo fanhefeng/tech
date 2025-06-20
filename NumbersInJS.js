@@ -1,0 +1,10 @@
+console.log(3.14); // 3.14
+console.log(.01); // 0.01
+console.log(10.); // 10
+console.log(1e18); // 1000000000000000000
+console.log(314e-2); // 3.14
+console.log(123_456_7890); // 1234567890
+console.log(0b10); // 2
+console.log(0o10); // 8 
+console.log(0x10); // 16
+console.log(1..toString()); // "1"
