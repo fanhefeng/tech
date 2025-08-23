@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Toggle Theme</title>
+		<style>
+			:root {
+				--bg-color: #fff;
+				--text-color: #222;
+			}
+			:root.dark {
+				--bg-color: #222;
+				--text-color: #fff;
+			}
+			body {
+				background-color: var(--bg-color);
+				color: var(--text-color);
+			}
+			::view-transition-old(root),
+			::view-transition-new(root) {
+				animation: none;
+			}
+			#toggle-btn {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Toggle Theme</h1>
+		<button id="toggle-btn">Toggle Theme</button>
+		<script>
+			const toggleBtn = document.getElementById("toggle-btn");
+			toggleBtn.addEventListener("click", (e) => {
+				const transition = document.startViewTransition(() => {
+					document.documentElement.classList.toggle("dark");
+				});
+				const x = e.clientX;
+				const y = e.clientY;
+				const targetRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+				transition.ready
+					.then(() => {
+						console.log("【Transition】", transition);
+						document.documentElement.animate(
+							{
+								clipPath: [`circle(0% at ${x}px ${y}px)`, `circle(${targetRadius}px at ${x}px ${y}px)`],
+							},
+							{
+								duration: 1000,
+								easing: "ease-in-out",
+								pseudoElement: "::view-transition-new(root)",
+							}
+						);
+					})
+					.finally(() => {
+						console.log("【Transition】", transition);
+					});
+			});
+		</script>
+	</body>
+</html>
