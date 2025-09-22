@@ -1,2 +1,15 @@
 # Tech
-Sharing some small technical knowledge points.
+
+1. [JavaScript 中的原始数据类型有哪些？](./01_js-primitive-types/index.js)
+2. [TOAST 居中显示](./02_center-toast/index.html)
+3. [Promise A+ 规范](./03_promise-aplus/index.js)
+4. [ES6 中的 class 转换为 ES5 的函数写法](./04_class-to-func/index.js)
+5. [封装一个可以控制请求超时的 fetch 函数](./05_fetch-with-timeout/index.js)
+6. [ts 中定义一个类型，可以提取出类型中的可选字段](./06_ts-get-optionals/index.ts)
+7. [ts 如何提取一个类的实例对象的类型](./07_ts-instance-type/index.ts)
+8. [MD5 算法实现](./08_md5/index.js)
+9. [JavaScript 中的一些关于数字的写法](./09_js-numbers/index.js)
+10. [ts 中把一个类型中的某些属性变为可选属性](./10_ts-optional/index.ts)
+11. [监控页面卡顿（使用 performance api）](./11_performance-api/index.html)
+12. [执行任务要求可中断暂停](./12_process-tasks/index.js)
+13. [模仿 Element Plus 官网切换暗色主题动画](./13_toggle-theme-animation/index.html)
